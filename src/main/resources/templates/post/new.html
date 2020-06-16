@@ -11,15 +11,23 @@
                     Nuevo Post
                 </div>
                 <div class="card-body">
-                    <form action="#" method="post">
+                    <form th:action="@{'/post/save'}" th:object="${post}" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="description">Descripción</label>
-                            <textarea class="form-control" id="description" name="description"></textarea>
+                            <textarea class="form-control" th:field="*{descripcion}"></textarea>
+                            <div class="text-danger" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
                         </div>
+
+
                         <div class="form-group">
-                            <label for="description">Foto</label>
-                            <input type="file" class="form-control">
+                            <label for="foto">Foto</label>
+                            <input type="file" class="form-control" name ="imageFile">
                         </div>
+
+
+
+
+
                         <button type="submit" class="btn btn-primary btn-block">Publicar</button>
                     </form>
                 </div>
