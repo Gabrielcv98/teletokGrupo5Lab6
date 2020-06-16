@@ -43,8 +43,7 @@ public class PostController {
 
 
     @GetMapping("/post/new")
-    public String newPost(Model model, @ModelAttribute("producto") Post post){
-
+    public String newPost(Model model, @ModelAttribute("post") Post post){
 
         return "post/new";
     }

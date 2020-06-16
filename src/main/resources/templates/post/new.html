@@ -12,6 +12,11 @@
                 </div>
                 <div class="card-body">
                     <form th:action="@{'/post/save'}" th:object="${post}" method="post" enctype="multipart/form-data">
+                        <div th:if="${msgImagenPostNull != null}" th:text="${msgImagenPostNull}" class="alert alert-success"
+                             role="alert"></div>
+                        <div th:if="${msgImagenPost != null}" th:text="${msgImagenPostNull}" class="alert alert-success"
+                             role="alert"></div>
+
                         <div class="form-group">
                             <label for="description">Descripción</label>
                             <textarea class="form-control" th:field="*{descripcion}"></textarea>
