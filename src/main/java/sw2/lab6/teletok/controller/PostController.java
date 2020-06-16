@@ -1,13 +1,31 @@
 package sw2.lab6.teletok.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import sw2.lab6.teletok.repository.PostCommentRepository;
+import sw2.lab6.teletok.repository.PostLikeRepository;
+import sw2.lab6.teletok.repository.PostRepository;
 
 @Controller
 public class PostController {
 
+    @Autowired
+    PostRepository postRepository;
+
+    @Autowired
+    PostLikeRepository postLikeRepository;
+
+    @Autowired
+    PostCommentRepository postCommentRepository;
+
     @GetMapping(value = {"", "/"})
-    public String listPost(){
+    public String listPost(Model model){
+
+        model.addAttribute("listapost", postRepository.listarpostdenuevoalantiguo());
+        model.addAttribute("listalike", postLikeRepository.findAll());
+        model.addAttribute("listacomment", postCommentRepository.findAll());
         return "post/list";
     }
 
